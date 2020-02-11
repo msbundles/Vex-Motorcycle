@@ -39,51 +39,15 @@ int main() {
   Controller1.Screen.print("Vroom Vroom");
   Brain.Screen.print("Vroom Vroom");
 
-  
   while(1){
-    if(Controller1.ButtonX.pressing()){
-      for(int i=0; i<100;i++){
-        RTR.spin(directionType::fwd,i, velocityUnits::pct);
-        RTL.spin(directionType::fwd,i, velocityUnits::pct);
-        RBR.spin(directionType::fwd,i, velocityUnits::pct);
-        RBL.spin(directionType::fwd,i, velocityUnits::pct);
-        LTR.spin(directionType::fwd,i, velocityUnits::pct);
-        LTL.spin(directionType::fwd,i, velocityUnits::pct);
-        LBR.spin(directionType::fwd,i, velocityUnits::pct);
-        LBL.spin(directionType::fwd,i, velocityUnits::pct);
-        task::sleep(200);
-      }
-      Controller1.Screen.print("Spinup Done");
-      task::sleep(500);
-      Controller1.Screen.clearScreen();
-    }
-    else if(Controller1.ButtonB.pressing()){
-      for(int i=0; i>0;i--){
-        RTR.spin(directionType::fwd,i, velocityUnits::pct);
-        RTL.spin(directionType::fwd,i, velocityUnits::pct);
-        RBR.spin(directionType::fwd,i, velocityUnits::pct);
-        RBL.spin(directionType::fwd,i, velocityUnits::pct);
-        LTR.spin(directionType::fwd,i, velocityUnits::pct);
-        LTL.spin(directionType::fwd,i, velocityUnits::pct);
-        LBR.spin(directionType::fwd,i, velocityUnits::pct);
-        LBL.spin(directionType::fwd,i, velocityUnits::pct);
-        task::sleep(500);
-      }
-      Controller1.Screen.print("Spindown Done");
-      task::sleep(500);
-      Controller1.Screen.clearScreen();
-
-    }
-    else{
-      RTR.spin(directionType::fwd,Controller1.Axis2.value(), velocityUnits::pct);
-      RTL.spin(directionType::fwd,Controller1.Axis2.value(), velocityUnits::pct);
-      RBR.spin(directionType::fwd,Controller1.Axis2.value(), velocityUnits::pct);
-      RBL.spin(directionType::fwd,Controller1.Axis2.value(), velocityUnits::pct);
-      LTR.spin(directionType::fwd,Controller1.Axis2.value(), velocityUnits::pct);
-      LTL.spin(directionType::fwd,Controller1.Axis2.value(), velocityUnits::pct);
-      LBR.spin(directionType::fwd,Controller1.Axis2.value(), velocityUnits::pct);
-      LBL.spin(directionType::fwd,Controller1.Axis2.value(), velocityUnits::pct);
-      steer.spin(directionType::fwd,Controller1.Axis4.value(), velocityUnits::pct);
-    }
-  }
+    RTR.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
+    RTL.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
+    RBR.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
+    RBL.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
+    LTR.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
+    LTL.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
+    LBR.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
+    LBL.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
+    steer.rotateTo(Controller1.Axis4.value()/2, velocityUnits::pct);
+}
 }
