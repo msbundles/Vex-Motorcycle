@@ -11,7 +11,8 @@
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
-
+#include <iostream>
+using namespace std;
 using namespace vex;
 motor RTR = motor(PORT1, ratio18_1, false);
 motor RTL = motor(PORT2, ratio18_1, false);
@@ -35,19 +36,7 @@ int main() {
   LBL.setStopping(brakeType::coast);
   LBR.setStopping(brakeType::coast);
   steer.setStopping(brakeType::hold);
+  steer.resetRotation();
   Controller1.Screen.clearScreen();
   Controller1.Screen.print("Vroom Vroom");
   Brain.Screen.print("Vroom Vroom");
-
-  while(1){
-    RTR.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
-    RTL.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
-    RBR.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
-    RBL.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
-    LTR.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
-    LTL.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
-    LBR.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
-    LBL.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);
-    steer.rotateTo(Controller1.Axis4.value()/2, velocityUnits::pct);
-}
-}
