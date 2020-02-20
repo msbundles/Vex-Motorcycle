@@ -12,6 +12,7 @@
 
 #include "vex.h"
 #include <iostream>
+#include <math>
 using namespace std;
 using namespace vex;
 motor RTR = motor(PORT1, ratio18_1, false);
@@ -24,6 +25,7 @@ motor LBL = motor(PORT7, ratio18_1, false);
 motor LBR = motor(PORT8, ratio18_1, false);
 motor steer = motor(PORT20, ratio18_1, false);
 controller Controller1;
+double speedExpo = 1;
 int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
@@ -40,3 +42,17 @@ int main() {
   Controller1.Screen.clearScreen();
   Controller1.Screen.print("Vroom Vroom");
   Brain.Screen.print("Vroom Vroom");
+
+  while(1){
+    int turnSpeed = Controller1.Axis4.value()*pow(1,Controller1.Axis4.value());
+    RTR.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);	
+    RTL.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);	
+    RBR.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);	
+    RBL.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);	
+    LTR.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);	
+    LTL.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);	
+    LBR.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);	
+    LBL.spin(directionType::rev,Controller1.Axis2.value(), velocityUnits::pct);	
+    steer.spin(directionType::fwd,turnSpeed,);	
+  }	
+}
